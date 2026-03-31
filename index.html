@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proposta de Investimento - TNP MOB</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- ESTILOS GERAIS --- */
+        :root {
+            --primary-color: #0047AB; /* Azul Tecnológico */
+            --secondary-color: #00C853; /* Verde Sucesso/Lucro */
+            --dark-bg: #0a0e17; /* Fundo Quase Preto */
+            --card-bg: #161b29; /* Fundo dos Cards */
+            --text-light: #ffffff;
+            --text-gray: #b0b8c9;
+            --font-main: 'Poppins', sans-serif;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--dark-bg);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+            padding-top: 70px;
+        }
+
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+
+        .container {
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* --- NAVBAR FIXA --- */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(90deg, var(--dark-bg) 0%, #0f1420 100%);
+            border-bottom: 1px solid #1f293a;
+            z-index: 1000;
+            padding: 1rem 0;
+            box-shadow: 0 4px 15px rgba(0, 71, 171, 0.2);
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: var(--text-gray);
+            font-weight: 500;
+            transition: var(--transition);
+            font-size: 0.9rem;
+        }
+
+        nav a:hover {
+            color: var(--primary-color);
+        }
+
+        /* --- UTILITÁRIOS --- */
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .highlight-green { color: var(--secondary-color); font-weight: 600; }
+        .highlight-blue { color: #3399ff; font-weight: 600; }
+
+        span.emoji { font-size: 1.2em; margin-right: 5px; }
+
+        /* --- ESTILIZAÇÃO DAS SEÇÕES --- */
+        section {
+            padding: 80px 0;
+            border-bottom: 1px solid #1f293a;
+        }
+
+        /* Hero / Capa */
+        #capa {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: radial-gradient(circle at center, #1a253a 0%, #0a0e17 100%);
+            text-align: center;
+            position: relative;
+            margin-top: -70px;
+            padding-top: 70px;
+        }
+
+        .hero-content {
+            z-index: 10;
+            max-width: 800px;
+        }
+
+        .hero-img {
+            max-width: 300px;
+            margin-bottom: 30px;
+			margin-top: 40px;
+            filter: drop-shadow(0 0 15px rgba(51, 153, 255, 0.5));
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-gray);
+            font-weight: 300;
+            margin-bottom: 40px;
+        }
+
+        /* Layout Padrão: Imagem/Texto */
+        .flex-grid {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .flex-grid.reverse { flex-direction: row-reverse; }
+
+        .content-block, .img-block { flex: 1; }
+
+        .img-block img {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            transition: var(--transition);
+        }
+        
+        .img-block img:hover { transform: scale(1.02); }
+
+        .text-p {
+            color: var(--text-gray);
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        .feature-list {
+            margin-top: 20px;
+        }
+
+        .feature-list li {
+            background-color: var(--card-bg);
+            padding: 15px 20px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            border-left: 3px solid var(--primary-color);
+            display: flex;
+            align-items: center;
+            font-weight: 500;
+        }
+
+        /* Subseção Distribuição */
+        .distribuicao-container {
+            margin-top: 40px;
+            text-align: center;
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 12px;
+        }
+
+        .distribuicao-img {
+            max-width: 500px;
+            margin: 0 auto 30px auto;
+            display: block;
+            border-radius: 12px;
+        }
+
+        .distribuicao-list {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .dist-item {
+            background: rgba(255,255,255,0.05);
+            padding: 15px 25px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        /* Estrutura de Investimento (Cards) */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .invest-card {
+            background-color: var(--card-bg);
+            padding: 30px;
+            border-radius: 12px;
+            border: 1px solid #1f293a;
+            transition: var(--transition);
+            text-align: center;
+        }
+
+        .invest-card:hover {
+            border-color: var(--primary-color);
+            transform: translateY(-5px);
+        }
+
+        .card-icon { font-size: 2.5rem; margin-bottom: 20px; display: block; }
+        .card-title { font-size: 1.2rem; margin-bottom: 10px; color: var(--text-gray); }
+        .card-value { font-size: 2rem; font-weight: 700; color: var(--text-light); }
+
+        .meta-final {
+            background: linear-gradient(90deg, var(--primary-color) 0%, #002e6e 100%);
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            margin-top: 30px;
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+
+        /* Regras e Liquidez */
+        .info-box {
+            background-color: rgba(0, 200, 83, 0.1);
+            color: var(--secondary-color);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            border-left: 5px solid var(--secondary-color);
+            font-weight: 500;
+        }
+
+        .info-box.warning {
+            background-color: rgba(255, 193, 7, 0.1);
+            color: #ffc107;
+            border-left-color: #ffc107;
+        }
+
+        /* Decisão Final */
+        #decisao {
+            text-align: center;
+            background: radial-gradient(circle at center, #1a1010 0%, #0a0e17 100%);
+            border-bottom: none;
+        }
+
+        .pergunta-final {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 40px;
+            color: var(--text-light);
+        }
+
+        .opcoes-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .opcao-box {
+            padding: 30px;
+            border-radius: 12px;
+            background: var(--card-bg);
+            border: 2px solid transparent;
+        }
+
+        .opcao-box.sucesso {
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 20px rgba(0, 200, 83, 0.2);
+        }
+
+        .opcao-box.perda {
+            border-color: #d32f2f;
+            opacity: 0.7;
+        }
+
+        .final-cta-text {
+            margin-top: 50px;
+            font-size: 1.2rem;
+            color: var(--text-gray);
+        }
+
+        /* BOTÃO WHATSAPP FLUTUANTE */
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25D366;
+            color: white;
+            border-radius: 50px;
+            padding: 15px 25px;
+            font-weight: 700;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        .whatsapp-btn:hover {
+            transform: scale(1.05) translateY(-3px);
+            background-color: #1ebe57;
+        }
+
+        .wa-icon {
+            width: 25px;
+            height: 25px;
+        }
+
+        /* CTA Button */
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(90deg, var(--primary-color) 0%, #0066ff 100%);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            margin: 20px 0;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 71, 171, 0.4);
+        }
+
+        /* --- RESPONSIVIDADE --- */
+        @media (max-width: 992px) {
+            .hero-title { font-size: 2.2rem; }
+            .flex-grid, .flex-grid.reverse { flex-direction: column; text-align: center; }
+            .feature-list li { justify-content: center; }
+            .section-title { font-size: 2rem; }
+            nav ul { gap: 1rem; }
+        }
+
+        @media (max-width: 768px) {
+    /* ... outras regras ... */
+    #capa { 
+        margin-top: 0; /* Remove o recuo negativo que esconde a imagem no topo */
+        padding-top: 40px; 
+        min-height: auto; /* Deixa o conteúdo definir a altura no celular */
+    }
+    .hero-img { 
+        max-width: 80% !important; /* Diminui um pouco a imagem no celular para caber melhor */
+        margin-top: 20px;
+    }
+}
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <a href="#" class="logo">🚀 TNP MOB</a>
+            <ul>
+                <li><a href="#capa">Proposta</a></li>
+                <li><a href="#diferencial">Diferencial</a></li>
+                <li><a href="#negocio">Negócio</a></li>
+                <li><a href="#investimento">Investimento</a></li>
+                <li><a href="#regras">Regras</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- SEÇÃO 1: CAPA E PROPOSTA DE VALOR -->
+    <section id="capa">
+        <div class="container hero-content">
+            <img src="https://github.com/Higocriativo25/imagem-investimento/blob/main/tnp_mob_abertura.png?raw=true" alt="TNP MOB Lançamento" class="hero-img">
+            <h1 class="hero-title"><span class="emoji">🚀</span>PROPOSTA DE INVESTIMENTO:<br>TNP MOB (Pré-Lançamento)</h1>
+            <p class="hero-subtitle">Esta é uma oportunidade exclusiva para entrar no ecossistema de mobilidade urbana antes da operação iniciar, garantindo participação societária com valor de face reduzido.</p>
+        </div>
+    </section>
+
+    <!-- SEÇÃO 2: O DIFERENCIAL ESTRATÉGICO -->
+    <section id="diferencial">
+        <div class="container">
+            <div class="flex-grid">
+                <div class="img-block">
+                    <img src="https://github.com/Higocriativo25/imagem-investimento/blob/main/base%20itapema.png?raw=true" alt="Base Estratégica Itapema">
+                </div>
+                <div class="content-block">
+                    <h2 class="section-title"><span class="emoji">📍</span>O DIFERENCIAL ESTRATÉGICO: ITAPEMA/SC</h2>
+                    <p class="text-p">Não estamos começando do zero. O TNP MOB nasce integrado a uma base já ativa em Itapema, com parcerias firmadas e um meio de pagamento próprio que já gera receita recorrente.</p>
+                    
+                    <ul class="feature-list">
+                        <li><strong>✔ Base Estruturada:</strong> Integração com comércios e prestadores de serviço</li>
+                        <li><strong>✔ Fidelização Real:</strong> Cashback para quem compra e comissões para quem indica</li>
+                        <li><strong>✔ Ecossistema 360°:</strong> Você lucra com corridas + consumo diário (mercados, postos, farmácias e serviços até a 4ª geração)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO 3: O MODELO DE NEGÓCIO -->
+    <section id="negocio">
+        <div class="container">
+            <h2 class="section-title"><span class="emoji">💸</span>O MODELO DE NEGÓCIO</h2>
+            <p class="text-p">O lucro não vem apenas das corridas. Nossa receita é diversificada:</p>
+
+            <div class="cards-grid">
+                <div class="invest-card">
+                    <span class="card-icon">🚗</span>
+                    <div class="card-title">Taxas de Intermediação</div>
+                    <p>Corridas de carro e moto</p>
+                </div>
+                <div class="invest-card">
+                    <span class="card-icon">🛍️</span>
+                    <div class="card-title">Comissões</div>
+                    <p>Sobre consumo na rede de parceiros</p>
+                </div>
+            </div>
+
+            <div class="distribuicao-container">
+                <h3 style="color: var(--text-light); margin-bottom: 20px;">Distribuição do Resultado Operacional</h3>
+                <img src="https://github.com/Higocriativo25/imagem-investimento/blob/main/distribuicao_lucros_tnpmob%20(1).png?raw=true" alt="Distribuição de Lucros" class="distribuicao-img">
+                
+                <div class="distribuicao-list">
+                    <div class="dist-item">
+                        <span class="highlight-green">70%</span> Caixa de Lucro<br><small>(distribuído aos investidores)</small>
+                    </div>
+                    <div class="dist-item">
+                        <span class="highlight-blue">20%</span> Caixa de Investimento<br><small>(expansão)</small>
+                    </div>
+                    <div class="dist-item">
+                        <span class="highlight-blue">10%</span> Caixa Reserva<br><small>(segurança)</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO 4: ESTRUTURA DE INVESTIMENTO -->
+    <section id="investimento">
+        <div class="container">
+            <h2 class="section-title"><span class="emoji">💰</span>ESTRUTURA DE INVESTIMENTO</h2>
+            <p class="text-p">Buscamos investidores visionários para compor o capital inicial:</p>
+
+            <div style="text-align: center; margin: 40px 0;">
+                <img src="https://github.com/Higocriativo25/imagem-investimento/blob/main/distribui%C3%A7%C3%A3o%20do%20foco.jpg?raw=true" alt="Distribuição do Foco" style="max-width: 500px; border-radius: 12px;">
+            </div>
+
+            <div class="cards-grid">
+                <div class="invest-card">
+                    <span class="card-icon">💻</span>
+                    <div class="card-title">Desenvolvimento do App</div>
+                    <div class="card-value">R$ 90.000</div>
+                </div>
+                <div class="invest-card">
+                    <span class="card-icon">🏢</span>
+                    <div class="card-title">Estrutura Corporativa</div>
+                    <div class="card-value">R$ 3.000</div>
+                </div>
+                <div class="invest-card">
+                    <span class="card-icon">📢</span>
+                    <div class="card-title">Marketing de Lançamento</div>
+                    <div class="card-value">R$ 27.000</div>
+                </div>
+            </div>
+
+            <div class="meta-final">
+                🎯 Meta Ideal (com caixa): <span class="highlight-green">R$ 120.000</span>
+            </div>
+
+            <div class="info-box">
+                ⏳ <strong>Prazo de Lançamento:</strong> 6 meses
+            </div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO 5: CAPTAÇÃO E DISTRIBUIÇÃO DE COTAS -->
+    <section id="regras">
+        <div class="container">
+            <h2 class="section-title"><span class="emoji">📊</span>CAPTAÇÃO E DISTRIBUIÇÃO DE COTAS</h2>
+
+            <ul class="feature-list">
+                <li><strong>✔ É possível investir qualquer valor</strong></li>
+                <li><strong>✔ A participação societária será proporcional ao valor investido</strong></li>
+                <li><strong>⚠ Para ter direito a voto nas enquetes, é necessário possuir no mínimo 1% da empresa</strong></li>
+            </ul>
+
+            <div class="info-box">
+                <strong>👉 Ou seja:</strong><br>
+                • Pode entrar com qualquer valor<br>
+                • Mas só participa das decisões quem tiver ≥1% de participação
+            </div>
+
+            <h3 style="color: var(--text-light); margin-top: 40px; margin-bottom: 20px;">📈 Regra de Proporcionalidade (Importante)</h3>
+            <p class="text-p">A meta de R$ 120.000 garante a execução do projeto, porém:</p>
+            
+            <div class="info-box">
+                <strong>👉 Caso o valor arrecadado ultrapasse esse valor,</strong><br>
+                a divisão continuará sendo 100% proporcional ao total investido.
+            </div>
+
+            <div style="text-align: center; margin: 40px 0;">
+                <img src="https://github.com/Higocriativo25/imagem-investimento/blob/main/regras_sociedade_tnpmob.png?raw=true" alt="Regras de Sociedade" style="max-width: 600px; border-radius: 12px;">
+            </div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO 6: FLEXIBILIDADE DE COTAS -->
+    <section>
+        <div class="container">
+            <h2 class="section-title"><span class="emoji">🔄</span>FLEXIBILIDADE DE COTAS (VENDA FUTURA)</h2>
+            <p class="text-p">Pensando no crescimento e na entrada de novos investidores:</p>
+
+            <div class="info-box">
+                <strong>👉 A empresa poderá realizar fracionamento de cotas (split) no futuro.</strong><br>
+                Exemplo: 1 cota pode virar 10 ou 100 cotas
+            </div>
+
+            <ul class="feature-list">
+                <li><strong>✔ Mantendo exatamente o mesmo percentual de cada sócio</strong></li>
+                <li><strong>✔ Sem prejuízo para investidores atuais</strong></li>
+            </ul>
+
+            <h3 style="color: var(--text-light); margin-top: 40px; margin-bottom: 20px;">💡 Por Que Isso é Importante</h3>
+            <ul class="feature-list">
+                <li>Facilita a entrada de novos investidores</li>
+                <li>Permite vender participações menores</li>
+                <li>Aumenta a liquidez da empresa</li>
+                <li>Prepara o projeto para expansão</li>
+            </ul>
+
+            <div style="text-align: center; margin: 40px 0;">
+                <img src="https://github.com/Higocriativo25/imagem-investimento/blob/main/split_cotas_tnpmob.png?raw=true" alt="Split de Cotas" style="max-width: 600px; border-radius: 12px;">
+            </div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO 7: PODER DE DECISÃO -->
+    <section>
+        <div class="container">
+            <h2 class="section-title"><span class="emoji">🗳️</span>PODER DE DECISÃO</h2>
+            
+            <ul class="feature-list">
+                <li><strong>Votos proporcionais ao investimento</strong></li>
+                <li><strong>Limitado a 20% por investidor</strong></li>
+                <li><strong>Decisões por enquete com prazo de 24h</strong></li>
+            </ul>
+
+            <h3 style="color: var(--text-light); margin-top: 40px; margin-bottom: 20px;">🧠 Regras de Sociedade</h3>
+            <ul class="feature-list">
+                <li><strong>Saída com aviso prévio de 30 dias</strong></li>
+                <li><strong>Venda de cotas:</strong>
+                    <ul style="margin-top: 10px; margin-left: 20px;">
+                        <li>Primeiro para sócios</li>
+                        <li>Depois para terceiros (com aprovação)</li>
+                    </ul>
+                </li>
+                <li><strong>A empresa não é obrigada a recomprar participação</strong></li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- SEÇÃO 8: VISÃO ESTRATÉGICA -->
+    <section>
+        <div class="container">
+            <h2 class="section-title"><span class="emoji">🔥</span>VISÃO ESTRATÉGICA</h2>
+            <p class="text-p" style="font-size: 1.3rem; margin-bottom: 30px;"><strong>Validar em Itapema → Expandir → Escalar → Valorizar</strong></p>
+            <p class="text-p">👉 Quem entra agora participa dessa multiplicação</p>
+
+            <div style="text-align: center; margin: 40px 0;">
+                <img src="https://github.com/Higocriativo25/imagem-investimento/blob/main/escalada_tnpmob.png?raw=true" alt="Escalada TNP MOB" style="max-width: 600px; border-radius: 12px;">
+            </div>
+
+            <div class="cards-grid">
+                <div class="invest-card">
+                    <span class="card-icon">📈</span>
+                    <div class="card-title">Por Que Entrar Agora?</div>
+                    <p>Você entra antes da valorização</p>
+                </div>
+                <div class="invest-card">
+                    <span class="card-icon">💰</span>
+                    <div class="card-title">Melhor Preço</div>
+                    <p>Paga menos por mais participação</p>
+                </div>
+                <div class="invest-card">
+                    <span class="card-icon">🚀</span>
+                    <div class="card-title">Crescimento</div>
+                    <p>Cresce junto com o projeto</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO 9: COMPARATIVO -->
+    <section>
+        <div class="container" style="text-align: center;">
+            <img src="https://github.com/Higocriativo25/imagem-investimento/blob/main/comparativo_investimento.png?raw=true" alt="Comparativo de Investimento" style="max-width: 700px; border-radius: 12px;">
+        </div>
+    </section>
+
+    <!-- SEÇÃO 10: DECISÃO FINAL -->
+    <section id="decisao">
+        <div class="container">
+            <h2 class="section-title"><span class="emoji">🚨</span>DECISÃO FINAL</h2>
+            <p class="pergunta-final">Vou te perguntar de forma simples:</p>
+            <p class="pergunta-final" style="font-size: 1.3rem; font-weight: bold; margin: 30px 0;">Se daqui 1 ano esse app estiver rodando bem e dando lucro…</p>
+            
+            <div class="opcoes-grid">
+                <div class="opcao-box sucesso">
+                    <h3 style="margin-bottom: 15px;">👉 Você prefere:</h3>
+                    <p style="font-size: 1.2rem; color: var(--secondary-color); font-weight: 600;">Já estar dentro ganhando</p>
+                </div>
+                <div class="opcao-box perda">
+                    <h3 style="margin-bottom: 15px;">ou</h3>
+                    <p style="font-size: 1.2rem; color: #d32f2f; font-weight: 600;">Ter ficado de fora vendo acontecer?</p>
+                </div>
+            </div>
+
+            <p class="final-cta-text">Porque a única diferença entre isso é entrar agora ou não.</p>
+            
+            <p style="margin-top: 40px; font-size: 1.1rem; color: var(--text-gray);">Entre em contato comigo e me informe quanto você pretende investir para garantir sua vaga!</p>
+            
+            <a href="https://wa.me/5531996645814?text=Olá%20TNP%20MOB!%20Gostaria%20de%20saber%20mais%20sobre%20o%20investimento." class="cta-button">Falar no WhatsApp</a>
+        </div>
+    </section>
+
+    <!-- BOTÃO WHATSAPP FLUTUANTE -->
+    <a href="https://wa.me/5531996645814?text=Olá%20TNP%20MOB!%20Gostaria%20de%20saber%20mais%20sobre%20o%20investimento." class="whatsapp-btn" target="_blank">
+        💬 Fale Conosco
+    </a>
+
+    <script>
+        document.querySelectorAll('nav ul li a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
